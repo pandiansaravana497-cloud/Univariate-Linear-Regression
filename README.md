@@ -16,23 +16,36 @@ To implement univariate Linear Regression to fit a straight line using least squ
 ## Program
 ```
 
-import pandas as pd
-from sklearn import linear_model
-df = pd.read_csv("carsemission.csv")
-X = df[['Weight', 'Volume']]
-y = df['CO2']
-regr = linear_model.LinearRegression()
-regr.fit(X, y)
-print('Coefficients:', regr.coef_)
-print('Intercept:', regr.intercept_)
-input_data = pd.DataFrame({'Weight': [3300], 'Volume': [1300]})
-predictedCO2 = regr.predict(input_data)
-print('Predicted CO2 for the corresponding weight and volume:', predictedCO2)
+import numpy as np 
+import matplotlib.pyplot as plt
+x = np.array([0,1,2,3,4,5,6,7,8,9])
+y = np.array([1,3,2,5,7,8,8,9,10,12])
+plt.scatter(x,y)
+plt.show()
+xmean = np.mean(x)
+ymean = np.mean(y)
+num=0
+den=0
+for i in range(len(x)):
+    num+=(x[i]-xmean)*(y[i]-ymean)
+    den+=(x[i]-xmean)**2
+m = num/den
+b = ymean - m*xmean
+print(m,b)
+ypred = m*x+b
+print(ypred)
+
+plt.scatter(x,y,color='Red')
+plt.plot(x,ypred,color='Blue')
+plt.show()
 
 
 ```
 ## Output
-<img width="1059" height="109" alt="image" src="https://github.com/user-attachments/assets/fdabad9f-05bc-419c-8a46-1f2581a83684" />
+<img width="708" height="630" alt="image" src="https://github.com/user-attachments/assets/3ef3c079-87bd-4e57-9560-5a4f520be522" />
+
+<img width="766" height="615" alt="image" src="https://github.com/user-attachments/assets/3e783f9f-45a2-4197-96f0-b0ceb0b10b3d" />
+
 
 ## Result
 Thus the univariate Linear Regression was implemented to fit a straight line using least squares.
